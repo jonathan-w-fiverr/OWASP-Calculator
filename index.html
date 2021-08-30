@@ -12,7 +12,7 @@
     <meta name="description" content="New version 2021 of OWASP Risk Assessment Calculator" />
     <meta name="author" content="Javier Olmedo" />
     <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>OWASP Risk Assessment Calculator v2021</title>
+    <title>Fiverr Risk Assessment Calculator v2021</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -23,16 +23,16 @@
   <body>
     <main>
       <section>
-        <h1>OWASP Risk Assessment Calculator</h1>
+        <h1>Fiverr Risk Assessment Calculator</h1>
         <canvas class="riskChart" id="riskChart" height="75"></canvas>
         <div class="risk RS">
           <h4>0</h4>
         </div>
       </section>
 
-      <!-- FIRST -->
+      <!-- FIRST 
       <div class="row">
-        <!-- THREAT AGENT FACTORS -->
+         THREAT AGENT FACTORS 
         <section>
           <h5 class="border-bottom" title="The first set of factors are related to the threat agent involved. The goal here is to estimate the likelihood of a successful attack by this group of threat agents. Use the worst-case threat agent.">Threat Agent Factors</h5>
           <div class="row">
@@ -80,10 +80,10 @@
               </select>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <!-- TECHNICAL IMPACT FACTORS -->
-        <section>
+        <!-- <section>
           <h5 class="border-bottom" title="Technical impact can be broken down into factors aligned with the traditional security areas of concern: confidentiality, integrity, availability, and accountability. The goal is to estimate the magnitude of the impact on the system if the vulnerability were to be exploited. ">Technical Impact Factors</h5>
           <div class="row">
             <div class="h6 nomargin col-4 d-flex align-items-center" title="How much data could be disclosed and how sensitive is it?">Loss of confidentiality</div>
@@ -132,15 +132,15 @@
             </div>
           </div>
         </section>
-      </div>
+      </div> -->
 
-      <!-- SECOND -->
+      <!-- SECON -->
       <div class="row">
-        <!-- VULNERABILITY FACTORS -->
+        <!-- Likelihood FACTORS -->
         <section>
           <h5 class="border-bottom" title="The next set of factors are related to the vulnerability involved. The goal here is to estimate the likelihood of the particular vulnerability involved being discovered and exploited. Assume the threat agent selected above.">Vulnerability Factors</h5>
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How easy is it for this group of threat agents to discover this vulnerability?">Ease of discovery</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Ease of Discovery: How easy is it for this group of threat agents to discover this vulnerability?">Ease of discovery</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="ed" name="ed" onchange="calculate()">
                 <option value="1">Practically impossible (1)</option>
@@ -151,7 +151,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How easy is it for this group of threat agents to actually exploit this vulnerability?">Ease of exploit</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Ease of Exploit: How easy is it for this group of threat agents to actually exploit this vulnerability?">Ease of exploit</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="ee" name="ee" onchange="calculate()">
                 <option value="1">Theoretical (1)</option>
@@ -161,8 +161,8 @@
               </select>
             </div>
           </div>
-          <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How well known is this vulnerability to this group of threat agents?">Awareness</div>
+          <!-- <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Known Since: How well known is this vulnerability to this group of threat agents?">Known Since</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="a" name="a" onchange="calculate()">
                 <option value="1">Unknown (1)</option>
@@ -171,9 +171,9 @@
                 <option value="9">Public knowledge (9)</option>
               </select>
             </div>
-          </div>
+          </div> -->
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How likely is an exploit to be detected?">Intrusion detection</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Intrusion Detection: How likely is an exploit to be detected?">Intrusion detection</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="id" name="id" onchange="calculate()">
                 <option value="1">Active detection in application (1)</option>
@@ -183,45 +183,75 @@
               </select>
             </div>
           </div>
-        </section>
+
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Known Since: For how long has this vulnerability been known">Known Since</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="a" name="a" onchange="calculate()">
+                <option value="1">Active detection in application (1)</option>
+                <option value="3">Logged and reviewed (3)</option>
+                <option value="8">Logged without review (8)</option>
+                <option value="9">Not logged (9)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Past Incidents: How many times has this been exploited">Past Incidents</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="pi" name="pi" onchange="calculate()">
+                <option value="1">Active detection in application (1)</option>
+                <option value="3">Logged and reviewed (3)</option>
+                <option value="8">Logged without review (8)</option>
+                <option value="9">Not logged (9)</option>
+              </select>
+            </div>
+          </div>
+        </section> 
 
         <!-- BUSINESS IMPACT FACTORS -->
         <section>
           <h5 class="border-bottom" title="The business impact stems from the technical impact, but requires a deep understanding of what is important to the company running the application. In general, you should be aiming to support your risks with business impact, particularly if your audience is executive level. The business risk is what justifies investment in fixing security problems.">Business Impact Factors</h5>
+          
+          
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How much financial damage will result from an exploit?">Financial damage</div>
-            <div class="col-8">
-              <select class="form-control" aria-label=".form-select-sm example" id="fd" name="fd" onchange="calculate()">
-                <option value="1">Less than the cost to fix the vulnerability (1)</option>
-                <option value="3">Minor effect on annual profit (3)</option>
-                <option value="7">Significant effect on annual profit (7)</option>
-                <option value="9">Bankruptcy (9)</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="Would an exploit result in reputation damage that would harm the business?">Reputation damage</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="How many users are impacted?">Users</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="rd" name="rd" onchange="calculate()">
-                <option value="1">Minimal damage (1)</option>
-                <option value="4">Loss of major accounts (4)</option>
-                <option value="5">Loss of goodwill (5)</option>
-                <option value="9">Brand damage (9)</option>
+                <option value="1">Small Percentage of Users (1)</option>
+                <option value="5"> Impact on &lt;5% of Userbase (5) </option>
+                
+                <option value="9"> Impact on >20% of Userbase (9)</option>
               </select>
             </div>
           </div>
+
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How much exposure does non-compliance introduce?">Non-compliance</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Level of IP disclosed?">Intellectual Property</div>
             <div class="col-8">
-              <select class="form-control" aria-label=".form-select-sm example" id="nc" name="nc" onchange="calculate()">
-                <option value="2">Minor violation (2)</option>
-                <option value="5">Clear violation (5)</option>
-                <option value="7">High profile violation (7)</option>
+              <select class="form-control" aria-label=".form-select-sm example" id="iprop" name="iprop" onchange="calculate()">
+                <option value="1">Small Percentage of Users (1)</option>
+                <option value="5"> Impact on &lt;5% of Userbase (5) </option>
+                
+                <option value="9"> Impact on >20% of Userbase (9)</option>
               </select>
             </div>
           </div>
+
           <div class="row">
-            <div class="h6 nomargin col-4 d-flex align-items-center" title="How much personally identifiable information could be disclosed?">Privacy violation</div>
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="How many employees are impacted?">Employees</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="emp" name="emp" onchange="calculate()">
+                <option value="1">Small Percentage of employees (1)</option>
+                <option value="5"> Impact on &lt;5% of employees (5) </option>
+                
+                <option value="9"> Impact on >20% of employees (9)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Platform Impact?">Platform Impact</div>
             <div class="col-8">
               <select class="form-control" aria-label=".form-select-sm example" id="pv" name="pv" onchange="calculate()">
                 <option value="3">One individual (3)</option>
@@ -231,6 +261,42 @@
               </select>
             </div>
           </div>
+
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title=" Equity: How much financial damage will result from an exploit?">Equity</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="fd" name="fd" onchange="calculate()">
+                <option value="1">potential loss of revenue or damage of up to 100K$ per year (1)</option>
+                <option value="3">Potential loss of revenue or damage of 100K$-1M$ per year (3)</option>
+                <option value="5">Potential loss of revenue or damage of 1M$-10M$ per year (5)</option>
+                <option value="7">Potential loss of revenue or damage of 10M$-50M$ per year (7)</option>
+                <option value="9">Potential loss of revenue or damage of more than 50M$ per year(9)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Non-compliance: How much exposure does non-compliance introduce?">Compliance</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="nc" name="nc" onchange="calculate()">
+                <option value="2">Minor violation (2)</option>
+                <option value="5">Clear violation (5)</option>
+                <option value="7">High profile violation (7)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="h6 nomargin col-4 d-flex align-items-center" title="Brand: What is level of damage to the Fiverr Brand?">Brand</div>
+            <div class="col-8">
+              <select class="form-control" aria-label=".form-select-sm example" id="b" name="b" onchange="calculate()">
+                <option value="2">Minor violation (2)</option>
+                <option value="5">Clear violation (5)</option>
+                <option value="7">High profile violation (7)</option>
+              </select>
+            </div>
+          </div>
+          
         </section>
       </div>
 
@@ -252,7 +318,7 @@
       <!-- CREDITS -->
       <section>
         <div>
-          <b>VECTOR: </b><a id="score" href="https://javierolmedo.github.io/OWASP-Calculator/?vector=(SL:1/M:1/O:0/S:2/ED:1/EE:1/A:1/ID:2/LC:2/LI:1/LAV:1/LAC:1/FD:1/RD:1/NC:2/PV:3)" target="_blank">(SL:1/M:1/O:0/S:2/ED:1/EE:1/A:1/ID:2/LC:2/LI:1/LAV:1/LAC:1/FD:1/RD:1/NC:2/PV:3)</a>
+          <b>VECTOR: </b><a href="/?vector=()" target="_blank" id="score">()</a>
           <br>
           <a href="#exampleModalCenter" data-toggle="modal">How is Severity Risk caculated?</a>
           <br>

@@ -4,7 +4,7 @@
 var riskChart = document.getElementById('riskChart').getContext('2d');
 
 const colors = [
-'rgba(255, 102, 255)',
+'rgba(156, 12, 12)',
 'rgba(255, 0, 0)',
 'rgba(255, 169, 0)',
 'rgba(255, 255, 0)',
@@ -12,20 +12,19 @@ const colors = [
 ];
 
 const backgrounds = [
-  'rgba(255, 102, 255, 0.5)',
+  'rgba(156, 12, 12, 0.5)',
   'rgba(255, 0, 0, 0.5)',
   'rgba(255, 169, 0, 0.5)',
   'rgba(255, 255, 0, 0.5)',
   'rgba(144, 238, 144, 0.5)'
 ];
 
-const threats = ["Skills required", "Motive", "Opportunity", "Population Size",
-"Easy of Discovery", "Ease of Exploit", "Awareness", "Intrusion Detection",
-"Loss of confidentiality", "Loss of Integrity", "Loss of Availability", "Loss of Accountability",
-"Financial damage", "Reputation damage", "Non-Compliance", "Privacy violation"
+const threats = [
+"Easy of Discovery", "Ease of Exploit", "Known Since", "Intrusion Detection", "past incidents" ,"Equity", "Users", "non-compliance", "Platform Impact" , "Brand", "Employees", "Intellectual Property"
 ];
 
-const partials = ["sl", "m", "o", "s", "ed", "ee", "a", "id", "lc", "li", "lav", "lac", "fd", "rd", "nc", "pv"];
+const partials = [ "ed", "ee", "a", "id", "pi", 
+"fd", "rd", "nc", "pv", "b", "emp", "iprop"];
 
 const riskChartOptions = {
   legend: {
@@ -74,11 +73,11 @@ function loadVectors(vector) {
   vector = vector.replace('(', '').replace(')', '');
   var values = vector.split('/');
 
-  if (values.length == 16) {
+  if (values.length == 12) {
     for (let i=0; i<values.length; i++) {
         let aux = values[i].split(':');
         let vector = aux[1];
-        console.log(vector)
+        console.log(partials[i] + ":  " + vector)
         $("#" + partials[i].toLowerCase()).val(vector);
     }
   } else {
@@ -96,43 +95,53 @@ function calculate(){
   deleteClass();
 
   // Get values THREAT AGENT FACTORS and VULNERABILITY FACTORS
-  LS = + $("#sl").val() +
-  + $("#m").val() +
-  + $("#o").val() +
-  + $("#s").val() +
+  LS =// + $("#sl").val() +
+  // + $("#m").val() +
+  // + $("#o").val() +
+  // + $("#s").val() +
+  + $("#pi").val() +
   + $("#ed").val() +
   + $("#ee").val() +
   + $("#a").val() +
+  
   + $("#id").val() + 0;
-  dataset.push($("#sl").val());
-  dataset.push($("#m").val());
-  dataset.push($("#o").val());
-  dataset.push($("#s").val());
+  // dataset.push($("#sl").val());
+  // dataset.push($("#m").val());
+  // dataset.push($("#o").val());
+  // dataset.push($("#s").val());
   dataset.push($("#ed").val());
   dataset.push($("#ee").val());
   dataset.push($("#a").val());
   dataset.push($("#id").val());
+  dataset.push($("#pi").val());
 
   // Get values TECHNICAL IMPACT FACTORS and BUSINESS IMPACT FACTORS
-  IS = + $("#lc").val() +
-  + $("#li").val() +
-  + $("#lav").val() +
-  + $("#lac").val() +
+   IS =// + $("#lc").val() +
+  // + $("#li").val() +
+  // + $("#lav").val() +
+  // + $("#lac").val() +
+  +$("#b").val() +
   + $("#fd").val() +
   + $("#rd").val() +
   + $("#nc").val() +
+  + $("#emp").val() +
+  + $("#iprop").val() +
   + $("#pv").val() + 0;
-  dataset.push($("#lc").val());
-  dataset.push($("#li").val());
-  dataset.push($("#lav").val());
-  dataset.push($("#lac").val());
+  // dataset.push($("#lc").val());
+  // dataset.push($("#li").val());
+  // dataset.push($("#lav").val());
+  // dataset.push($("#lac").val());
   dataset.push($("#fd").val());
   dataset.push($("#rd").val());
   dataset.push($("#nc").val());
   dataset.push($("#pv").val());
+  dataset.push($("#b").val());
+  dataset.push($("#emp").val());
+  dataset.push($("#iprop").val());
   
-  var LS = (LS/8).toFixed(3);
-  var IS = (IS/8).toFixed(3);
+  
+  var LS = (LS/5).toFixed(3);
+  var IS = (IS/7).toFixed(3);
 
   var FLS = getRisk(LS);
   var FIS = getRisk(IS);
@@ -141,25 +150,31 @@ function calculate(){
   $(".IS").text(IS + " " + FIS);
 
   score = '(';
-  score = score + 'SL:' + $("#sl").val() + '/';
-  score = score + 'M:' + $("#m").val() + '/';
-  score = score + 'O:' + $("#o").val() + '/';
-  score = score + 'S:' + $("#s").val() + '/';
+  // score = score + 'SL:' + $("#sl").val() + '/';
+  // score = score + 'M:' + $("#m").val() + '/';
+  // score = score + 'O:' + $("#o").val() + '/';
+  // score = score + 'S:' + $("#s").val() + '/';
   score = score + 'ED:' + $("#ed").val() + '/';
   score = score + 'EE:' + $("#ee").val() + '/';
   score = score + 'A:' + $("#a").val() + '/';
   score = score + 'ID:' + $("#id").val() + '/';
-  score = score + 'LC:' + $("#lc").val() + '/';
-  score = score + 'LI:' + $("#li").val() + '/';
-  score = score + 'LAV:' + $("#lav").val() + '/';
-  score = score + 'LAC:' + $("#lac").val() + '/';
+  score = score + 'PI:' + $("#pi").val() + '/';
+  // score = score + 'LC:' + $("#lc").val() + '/';
+  // score = score + 'LI:' + $("#li").val() + '/';
+  // score = score + 'LAV:' + $("#lav").val() + '/';
+  // score = score + 'LAC:' + $("#lac").val() + '/';
   score = score + 'FD:' + $("#fd").val() + '/';
   score = score + 'RD:' + $("#rd").val() + '/';
   score = score + 'NC:' + $("#nc").val() + '/';
-  score = score + 'PV:' + $("#pv").val();
+  
+  
+  score = score + 'PV:' + $("#pv").val() + '/';
+  score = score + 'B:' + $("#b").val() + '/';
+  score = score + 'EMP:' + $("#emp").val() + '/';
+  score = score + 'IPROP:' + $("#iprop").val();
   score = score + ')';
   $('#score').text(score);
-  $("#score").attr("href", "https://javierolmedo.github.io/OWASP-Calculator/?vector=" + score);
+  $("#score").attr("href", "file:///Users/jonathan.waldman/repos/OWASP-Calculator/index.html?vector=" + score);
 
   if(getRisk(LS) == "LOW"){
       $(".LS").addClass("classNote");

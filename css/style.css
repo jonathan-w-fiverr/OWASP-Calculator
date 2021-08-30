@@ -3,7 +3,7 @@
 
 * {box-sizing: border-box;}
 
-.classCritical { color: #FFFFFF; background-color: rgb(255, 102, 255, 0.5); font-weight: bold; border: 3px solid #FF66FF; border-radius: 5px;}
+.classCritical { color: #FFFFFF; background-color: rgb(156, 12, 12, 0.5); font-weight: bold; border: 3px solid rgb(156, 12, 12, 0.5); border-radius: 5px;}
 .classHigh { color: #FFFFFF; background-color: rgba(255, 0, 0, 0.5); font-weight: bold; border: 3px solid #FF0000; border-radius: 5px;}
 .classMedium { color: #000000; background-color: rgba(255, 169, 0, 0.5); font-weight: bold; border: 3px solid #FFA900; border-radius: 5px;}
 .classLow { color: #000000; background-color: rgba(255, 255, 0, 0.5); font-weight: bold; border: 3px solid #FFFF00; border-radius: 5px;}
