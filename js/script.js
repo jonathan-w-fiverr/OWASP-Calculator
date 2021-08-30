@@ -174,7 +174,7 @@ function calculate(){
   score = score + 'IPROP:' + $("#iprop").val();
   score = score + ')';
   $('#score').text(score);
-  $("#score").attr("href", "file:///Users/jonathan.waldman/repos/OWASP-Calculator/index.html?vector=" + score);
+  $("#score").attr("href", "https://jonathan-w-fiverr.github.io/OWASP-Calculator/index.html?vector=" + score);
 
   if(getRisk(LS) == "LOW"){
       $(".LS").addClass("classNote");
