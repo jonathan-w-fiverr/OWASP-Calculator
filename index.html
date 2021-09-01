@@ -322,7 +322,7 @@
       <!-- CREDITS -->
       <section>
         <div>
-          <b>VECTOR: </b><a href="/?vector=()" target="_blank" id="score">()</a>
+          <b>VECTOR: </b><a href="/?vector=()" target="_blank" id="score">()</a> <button id="copyButton" onclick="myFunction()">Copy link</button>
           <br>
           <a href="#exampleModalCenter" data-toggle="modal">How is Severity Risk caculated?</a>
           <br>
@@ -421,6 +421,23 @@
     </div>
 
     <!-- SCRIPTS -->
+    <script>
+    function myFunction() {
+      /* Get the text field */
+      var copyText = document.getElementById("score").href;
+    
+      /* Select the text field */
+      //copyText.select();
+      //copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    
+       /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText);
+      let btn = document.getElementById("copyButton");
+      btn.innerText = "Link copied"
+      /* Alert the copied text */
+      //alert("Copied the text: " + copyText);
+    }
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/Chart.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
